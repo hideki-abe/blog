@@ -23,7 +23,7 @@ public class IngredientController {
     @GetMapping
     public ResponseEntity findAll(
             @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "calories", required = false) int calories
+            @RequestParam(value = "calories", required = false) Integer calories
     ) {
         Ingredient filter = new Ingredient();
         filter.setName(name);

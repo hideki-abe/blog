@@ -21,7 +21,7 @@ public class Ingredient {
     private String name;
 
     @Column(name = "calories")
-    private int calories;
+    private Integer calories;
 
 
 }
