@@ -1,31 +1,51 @@
 package com.hidekiabe.blog.service.imp;
 
 import com.hidekiabe.blog.model.Ingredient;
+import com.hidekiabe.blog.repository.IngredientRepository;
 import com.hidekiabe.blog.service.IngredientServiceInterface;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class IngredientService implements IngredientServiceInterface {
 
-    @Override
-    public Ingredient save(Ingredient ingredient) {
-        return null;
+    private IngredientRepository repository;
+
+    @Autowired
+    public IngredientService(IngredientRepository repository) {
+        this.repository = repository;
     }
 
     @Override
+    @Transactional
+    public Ingredient save(Ingredient ingredient) {
+        return repository.save(ingredient);
+    }
+
+    @Override
+    @Transactional
     public Ingredient update(Ingredient ingredient) {
-        return null;
+        Objects.requireNonNull(ingredient.getId());
+        return repository.save(ingredient);
     }
 
     @Override
     public void delete(Ingredient ingredient) {
-
+        Objects.requireNonNull(ingredient.getId());
+        repository.delete(ingredient);
     }
 
     @Override
     public List<Ingredient> findAll(Ingredient filter) {
-        return null;
+        Example example = Example.of(filter, ExampleMatcher
+                .matching()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
+        return repository.findAll(example);
     }
 }
