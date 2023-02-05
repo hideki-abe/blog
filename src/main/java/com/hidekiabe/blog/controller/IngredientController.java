@@ -3,10 +3,7 @@ package com.hidekiabe.blog.controller;
 import com.hidekiabe.blog.model.Ingredient;
 import com.hidekiabe.blog.service.imp.IngredientService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +28,16 @@ public class IngredientController {
 
         List<Ingredient> ingredients = this.service.findAll(filter);
         return ResponseEntity.ok(ingredients);
+    }
+
+    @PostMapping
+    public ResponseEntity save(@RequestBody Ingredient ingredient) {
+        try {
+            Ingredient entity = this.service.save(ingredient);
+            return ResponseEntity.ok(entity);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
 }
