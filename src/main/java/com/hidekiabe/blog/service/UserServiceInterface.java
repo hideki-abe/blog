@@ -1,6 +1,6 @@
 package com.hidekiabe.blog.service;
 
-import com.hidekiabe.blog.model.User;
+import com.hidekiabe.blog.model.entity.User;
 
 import java.util.List;
 

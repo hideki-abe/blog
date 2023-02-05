@@ -1,6 +1,6 @@
 package com.hidekiabe.blog.service.imp;
 
-import com.hidekiabe.blog.model.Ingredient;
+import com.hidekiabe.blog.model.entity.Ingredient;
 import com.hidekiabe.blog.repository.IngredientRepository;
 import com.hidekiabe.blog.service.IngredientServiceInterface;
 import jakarta.transaction.Transactional;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class IngredientService implements IngredientServiceInterface {
@@ -46,6 +47,10 @@ public class IngredientService implements IngredientServiceInterface {
                 .matching()
                 .withIgnoreCase()
                 .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
-        return repository.findAll(example);
+        return this.repository.findAll(example);
+    }
+
+    public Optional<Ingredient> findById(Integer id) {
+        return this.repository.findById(id);
     }
 }

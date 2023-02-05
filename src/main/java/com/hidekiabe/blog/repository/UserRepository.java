@@ -1,6 +1,6 @@
 package com.hidekiabe.blog.repository;
 
-import com.hidekiabe.blog.model.User;
+import com.hidekiabe.blog.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

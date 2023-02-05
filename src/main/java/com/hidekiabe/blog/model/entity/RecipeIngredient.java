@@ -1,4 +1,4 @@
-package com.hidekiabe.blog.model;
+package com.hidekiabe.blog.model.entity;
 
 public class RecipeIngredient {
 

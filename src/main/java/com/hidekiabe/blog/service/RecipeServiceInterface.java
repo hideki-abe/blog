@@ -1,6 +1,6 @@
 package com.hidekiabe.blog.service;
 
-import com.hidekiabe.blog.model.Recipe;
+import com.hidekiabe.blog.model.entity.Recipe;
 import java.util.List;
 
 public interface RecipeServiceInterface {

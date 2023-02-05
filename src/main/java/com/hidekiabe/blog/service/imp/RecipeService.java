@@ -1,6 +1,6 @@
 package com.hidekiabe.blog.service.imp;
 
-import com.hidekiabe.blog.model.Recipe;
+import com.hidekiabe.blog.model.entity.Recipe;
 import com.hidekiabe.blog.service.RecipeServiceInterface;
 
 import java.util.List;
