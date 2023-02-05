@@ -57,6 +57,15 @@ public class IngredientController {
                 new ResponseEntity("Ingrediente nâo encontrado!", HttpStatus.BAD_REQUEST));
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity delete(@PathVariable("id") Integer id) {
+        return service.findById(id).map( entity -> {
+            this.service.delete(entity);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }).orElseGet( () ->
+                new ResponseEntity("Ingrediente nâo encontrado!", HttpStatus.BAD_REQUEST));
+    }
+
     private Ingredient toEntity(IngredientDTO dto) {
         Ingredient ingredient = new Ingredient();
         ingredient.setName(dto.getName());
