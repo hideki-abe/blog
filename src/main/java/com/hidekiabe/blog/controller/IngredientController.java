@@ -3,6 +3,7 @@ package com.hidekiabe.blog.controller;
 import com.hidekiabe.blog.model.dto.IngredientDTO;
 import com.hidekiabe.blog.model.entity.Ingredient;
 import com.hidekiabe.blog.service.imp.IngredientService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity save(@RequestBody Ingredient ingredient) {
+    public ResponseEntity save(@Valid @RequestBody Ingredient ingredient) {
         try {
             Ingredient entity = this.service.save(ingredient);
             return ResponseEntity.ok(entity);
