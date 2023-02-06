@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @AllArgsConstructor
@@ -22,5 +24,9 @@ public class Recipe {
 
     @Column(name = "date")
     private String date;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_recipe")
+    private List<Ingredient> ingredients;
 
 }
