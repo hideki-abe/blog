@@ -87,6 +87,7 @@ public class RecipeController {
         dto.setName(entity.getName());
         dto.setDate(entity.getDate());
         dto.setDescription(entity.getDescription());
+        dto.setIngredients(entity.getIngredients());
         return dto;
     }
 
