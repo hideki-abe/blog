@@ -32,6 +32,13 @@ public class RecipeController {
         return ResponseEntity.ok(recipes);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity findById(@PathVariable("id") Integer id) {
+        return this.service.findById(id)
+                .map( recipe -> new ResponseEntity(toDTO(recipe), HttpStatus.OK))
+                .orElseGet( () -> new ResponseEntity(HttpStatus.NOT_FOUND));
+    }
+
     @PostMapping
     public ResponseEntity save(@RequestBody Recipe recipe) {
         try {
@@ -68,9 +75,18 @@ public class RecipeController {
 
     private Recipe toEntity(RecipeDTO dto) {
         Recipe recipe = new Recipe();
+        recipe.setName(dto.getName());
         recipe.setDescription(dto.getDescription());
         recipe.setDate(dto.getDate());
         return recipe;
+    }
+
+    private RecipeDTO toDTO(Recipe entity) {
+        RecipeDTO dto = new RecipeDTO();
+        dto.setName(entity.getName());
+        dto.setDate(entity.getDate());
+        dto.setDescription(entity.getDescription());
+        return dto;
     }
 
 }

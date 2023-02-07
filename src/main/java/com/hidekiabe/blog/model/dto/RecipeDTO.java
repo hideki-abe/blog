@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecipeDTO {
 
+    private String name;
     private String description;
     private String date;
 }
