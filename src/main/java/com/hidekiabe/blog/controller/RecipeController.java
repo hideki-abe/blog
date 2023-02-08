@@ -35,7 +35,7 @@ public class RecipeController {
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Integer id) {
         return this.service.findById(id)
-                .map( recipe -> new ResponseEntity(toDTO(recipe), HttpStatus.OK))
+                .map( recipe -> new ResponseEntity(toDTO(recipe, id), HttpStatus.OK))
                 .orElseGet( () -> new ResponseEntity(HttpStatus.NOT_FOUND));
     }
 
@@ -81,11 +81,13 @@ public class RecipeController {
         return recipe;
     }
 
-    private RecipeDTO toDTO(Recipe entity) {
+    private RecipeDTO toDTO(Recipe entity, Integer id) {
         RecipeDTO dto = new RecipeDTO();
+        dto.setId(id);
         dto.setName(entity.getName());
         dto.setDate(entity.getDate());
         dto.setDescription(entity.getDescription());
+        dto.setIngredients(entity.getIngredients());
         return dto;
     }
 
