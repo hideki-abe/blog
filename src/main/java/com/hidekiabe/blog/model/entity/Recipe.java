@@ -1,10 +1,12 @@
 package com.hidekiabe.blog.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -12,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table( name = "recipe")
-public class Recipe {
+public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -28,8 +30,10 @@ public class Recipe {
     @Column(name = "date")
     private String date;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_recipe")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="recipe_ingredient",
+                joinColumns = {@JoinColumn(name="ingredient_id")},
+                inverseJoinColumns = {@JoinColumn(name="recipe_id")})
     private List<Ingredient> ingredients;
 
 }
