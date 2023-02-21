@@ -2,6 +2,10 @@ package com.hidekiabe.blog.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,12 +26,17 @@ public class Recipe implements Serializable {
     private Integer id;
 
     @Column(name = "name")
+    @NotBlank(message = "Name is mandatory!")
+    @Size(min=4, max=25, message = "Name must be between 4 and 25 characters!")
     private String name;
 
     @Column(name = "description")
+    @NotBlank(message = "Description is mandatory!")
+    @Size(min=20, message = "Description must be at least 20 characters!")
     private String description;
 
     @Column(name = "date")
+    @NotBlank(message = "Date is mandatory!")
     private String date;
 
     @ManyToMany(fetch = FetchType.EAGER)
